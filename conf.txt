@@ -1,0 +1,5 @@
+<?php
+$localhost = "localhost";
+$user = "ariel";
+$pass = "";
+$dbName = "db_test";
