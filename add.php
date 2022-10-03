@@ -17,58 +17,45 @@
         </script>
       <?php endif ?>
       <!-- header  -->
-      <div class="col-md-8 row my-2">
+      <div class="col-md-12 row my-2">
         <h2 class="col">Add User Data</h2>
       </div>
       <!-- end header  -->
 
       <!-- table add data -->
-      <div class="col-md-8">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Hobby</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- add user data  -->
-            <form action="index.php" method="post" class="row">
-              <!-- if $_POST["totalUser"] = null, $_POST["totalUser"] = 1 -->
-              <?php ($_POST["totalUser"] == null) ? $_POST["totalUser"] = 1 : $_POST["totalUser"]; ?>
-              <input type="hidden" name="total" value="<?= $_POST["totalUser"]; ?>">
-              <?php
-              $total = $_POST["totalUser"];
-              for ($i = 1; $i <= $total; $i++) : ?>
-                <tr>
-                  <th scope="row"><?= $i; ?></th>
-                  <td>
-                    <div class="mb-3">
-                      <!-- <label for="first-name" class="form-label">First Name</label> -->
-                      <input type="text" class="form-control" id="first-name" name="first-name-<?= $i; ?>" placeholder="Jack">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="mb-3">
-                      <!-- <label for="last-name" class="form-label">Last Name</label> -->
-                      <input type="text" class="form-control" id="last-name" name="last-name-<?= $i; ?>" placeholder="john">
-                    </div>
-                  </td>
-                  <td>
-                    <div class="mb-3">
-                      <!-- <label for="hobby" class="form-label">Hobby</label> -->
-                      <input type="text" class="form-control" id="hobby" name="hobby-<?= $i; ?>" placeholder="Reading Book">
-                    </div>
-                  </td>
-                </tr>
-              <?php endfor ?>
-              <button type="submit" class="btn btn-success" name="AddAllUsers">Add User Data</button>
-            </form>
-            <!-- end add user data  -->
-          </tbody>
-        </table>
+      <div class="col-md-12">
+        <!-- add user data  -->
+        <form action="index.php" method="post" class="row bg-secondary justify-content-center">
+          <!-- if $_POST["totalUser"] = null, $_POST["totalUser"] = 1 -->
+          <?php ($_POST["totalUser"] == null) ? $_POST["totalUser"] = 1 : $_POST["totalUser"]; ?>
+          <input type="hidden" name="total" value="<?= $_POST["totalUser"]; ?>">
+          <div class="col row ">
+            <?php
+            $total = $_POST["totalUser"];
+            for ($i = 1; $i <= $total; $i++) : ?>
+              <div class="col-md-6 row my-2">
+                <h3>User Number <?= $i; ?></h3>
+                <div class="col-md-6 mb-3">
+                  <!-- <label for="first-name" class="form-label">First Name</label> -->
+                  <input type="text" class="form-control" id="first-name" name="first-name-<?= $i; ?>" placeholder="Jack">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <!-- <label for="last-name" class="form-label">Last Name</label> -->
+                  <input type="text" class="form-control" id="last-name" name="last-name-<?= $i; ?>" placeholder="john">
+                </div>
+                <div class="mb-3">
+                  <!-- <label for="hobby" class="form-label">Hobby</label> -->
+                  <input type="text" class="form-control" id="hobby" name="hobby-<?= $i; ?>" placeholder="Reading Book">
+                </div>
+              </div>
+            <?php endfor ?>
+          </div>
+          <div class="mb-3 py-2 d-flex justify-content-end">
+            <button type="submit" class="btn btn-success" name="AddAllUsers">Add User Data</button>
+          </div>
+        </form>
+        <!-- end add user data  -->
+
 
       </div>
       <!-- end table add data -->
