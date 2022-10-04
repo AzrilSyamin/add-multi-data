@@ -20,48 +20,62 @@ if (isset($_POST["AddAllUsers"])) {
 
 <body>
   <div class="container">
+
     <div class="row justify-content-center mt-3">
       <!-- header  -->
-      <div class="col-md-8 row my-2">
+      <div class="col-md-12 row my-2">
         <h2 class="col">User List</h2>
         <button class="col-md-4 btn btn-success" data-bs-toggle="modal" data-bs-target="#AddUser">Add New Users</button>
       </div>
       <!-- end header  -->
-      <!-- table  -->
-      <div class="col-md-8">
-        <table class="table table-dark table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-              <th scope="col">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="select_all">
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php $i = 1;
-            foreach ($users as $user) : ?>
+      <form method="POST">
+        <!-- table  -->
+        <div class="col-md-12">
+          <?php
+          if (isset($_POST['btn-delete'])) {
+            @myAlert(del($_POST['checked']), "Delete");
+          }
+          ?>
+          <table class="table table-dark table-striped">
+            <thead>
               <tr>
-                <th scope="row"><?= $i++; ?></th>
-                <td><?= $user["first_name"]; ?></td>
-                <td><?= $user["last_name"]; ?></td>
-                <td><?= $user["hobby"]; ?></td>
-                <td>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Role</th>
+                <th scope="col">
                   <div class="form-check">
-                    <input class="form-check-input check" type="checkbox" name="checked[]" value="<?= $user["user_id"]; ?>">
+                    <input class="form-check-input" type="checkbox" value="" id="select_all">
                   </div>
-                </td>
+                </th>
               </tr>
-            <?php endforeach ?>
-          </tbody>
-        </table>
-      </div>
-      <!-- end table  -->
+            </thead>
+            <tbody>
+              <?php $i = 1;
+              foreach ($users as $user) : ?>
+                <tr>
+                  <th scope="row"><?= $i++; ?></th>
+                  <td><?= $user["user_name"]; ?></td>
+                  <td><?= $user["phone_number"]; ?></td>
+                  <td><?= $user["user_role"]; ?></td>
+                  <td>
+                    <div class="form-check">
+                      <input class="form-check-input check" type="checkbox" name="checked[]" value="<?= $user["user_id"]; ?>">
+                    </div>
+                  </td>
+                </tr>
+              <?php endforeach ?>
+            </tbody>
+          </table>
+        </div>
+        <!-- end table  -->
+        <!-- action  -->
+        <div class="col-md-12 d-flex justify-content-end">
+          <button type="submit" name="btn-edit" class="btn btn-warning mx-2" id="edit">Edit</button>
+          <button type="submit" name="btn-delete" class="btn btn-danger" id="del">Delete</button>
+        </div>
+        <!-- end action  -->
+      </form>
 
 
 
@@ -90,30 +104,6 @@ if (isset($_POST["AddAllUsers"])) {
       </div>
       <!-- end modal 1 -->
 
-      <!-- Modal 1 -->
-      <div class="modal fade" id="AddUser" tabindex="-1" aria-labelledby="AddUserLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="AddUserLabel">Total New Data</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <form action="add.php" method="post" class="row">
-                <div class="mb-3">
-                  <label for="totalUser" class="form-label">Total Users</label>
-                  <input type="number" class="form-control" id="totalUser" name="totalUser" placeholder="10">
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" name="AddData">Next</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- end modal 1 -->
     </div>
   </div>
 
@@ -140,6 +130,11 @@ if (isset($_POST["AddAllUsers"])) {
         } else {
           $("#select_all").prop("checked", false)
         }
+      })
+
+      $("#del").click(function() {
+        return confirm("Are You Sure?")
+        window.location = "index.php?del"
       })
 
     })

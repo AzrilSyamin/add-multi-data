@@ -35,17 +35,18 @@
             for ($i = 1; $i <= $total; $i++) : ?>
               <div class="col-md-6 row my-2">
                 <h3>User Number <?= $i; ?></h3>
-                <div class="col-md-6 mb-3">
+                <div class="mb-3">
                   <!-- <label for="first-name" class="form-label">First Name</label> -->
-                  <input type="text" class="form-control" id="first-name" name="first-name-<?= $i; ?>" placeholder="Jack">
+                  <input type="text" class="form-control" id="user-name" name="user-name-<?= $i; ?>" placeholder="Your Name" required>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="mb-3">
                   <!-- <label for="last-name" class="form-label">Last Name</label> -->
-                  <input type="text" class="form-control" id="last-name" name="last-name-<?= $i; ?>" placeholder="john">
+                  <input type="number" class="form-control" id="phone-number" name="phone-number-<?= $i; ?>" placeholder="Phone Number" required>
                 </div>
                 <div class="mb-3">
                   <!-- <label for="hobby" class="form-label">Hobby</label> -->
-                  <input type="text" class="form-control" id="hobby" name="hobby-<?= $i; ?>" placeholder="Reading Book">
+                  <input type="text" class="form-control" id="role" name="role-<?= $i; ?>" placeholder="Your Role">
+                  <span>Optional</span>
                 </div>
               </div>
             <?php endfor ?>
