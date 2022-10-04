@@ -13,7 +13,6 @@ function add($data, $total)
     $result = mysqli_query($con, "INSERT INTO users VALUE (NULL,'$first','$last','$hobby')");
   }
   if ($result) {
-    echo "<script>window.location='index.php'</script>";
     return mysqli_affected_rows($con);
   }
 }
@@ -28,14 +27,12 @@ function del($data)
     $result = mysqli_query($con, $query);
   }
   if ($result) {
-    // echo "<script>window.location='index.php'</script>";
     return mysqli_affected_rows($con);
   }
 }
 
 function myAlert($result, $action)
 {
-
   if ($result > 0) {
     $result = "successful";
     $color = "success";
@@ -43,7 +40,6 @@ function myAlert($result, $action)
     $result = "Failed";
     $color = "danger";
   }
-
 
   echo "
   <div class=\"col-12\">

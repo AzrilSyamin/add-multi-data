@@ -2,10 +2,6 @@
 require_once "proses.php";
 $users = mysqli_query($con, "SELECT * FROM users ORDER BY `user_id` DESC");
 
-if (isset($_POST["AddAllUsers"])) {
-  add($_POST, $_POST["total"]);
-}
-
 
 ?>
 <!doctype html>
@@ -32,6 +28,10 @@ if (isset($_POST["AddAllUsers"])) {
         <!-- table  -->
         <div class="col-md-12">
           <?php
+          if (isset($_POST["AddAllUsers"])) {
+            @myAlert(add($_POST, $_POST["total"]), "Add");
+          }
+
           if (isset($_POST['btn-delete'])) {
             @myAlert(del($_POST['checked']), "Delete");
           }
@@ -108,8 +108,10 @@ if (isset($_POST["AddAllUsers"])) {
   </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous">
+  </script>
   <script>
     $(document).ready(function() {
       $("#select_all").on("click", function() {
