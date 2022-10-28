@@ -1,7 +1,7 @@
 <?php
 // rename this file to conf.php
 // and insert your data in variable
-$localhost = "";
+$host = "";
 $user = "";
 $pass = "";
 $dbName = "";
